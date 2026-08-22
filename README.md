@@ -1,213 +1,132 @@
-## 1. Introduction
+# HRMS — Human Resource Management System
 
-Dayflow is a digital solution for managing Human Resource Management System (HRMS) for employees and Admin/HR Officers
-It involves digitization of the following aspects of work:
+**Every workday, perfectly aligned.**
 
-Employee Onboarding and Profiles
+A full-stack, production-ready HR Management System built for hackathon submission and real deployment.
 
-Attendance
-Leaves
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-009688?logo=fastapi)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite)
 
-Payroll
+---
 
-Approvals by Admin/HR Officers and Employees
+## Features
 
-## 2. Goals
-Dayflow aims to offer:
-Secure logins
-Authorization and access control (Admin/HR and Employees)
-Employees profiles
-Attendance
-Leaves and Timeoffs
-Payrolls
-Leave approvals
-Email and notification management
-Analytic reports
+| Module | Capabilities |
+|--------|--------------|
+| **Authentication** | Register, Login, JWT, role-based access (Employee / HR) |
+| **Employee Dashboard** | Attendance status, quick check-in/out, leave summary, notifications |
+| **HR Dashboard** | Live metrics, pending leaves, quick approve/reject |
+| **Attendance** | Check-in / Check-out, history, admin filters |
+| **Leave Management** | Apply (Paid/Sick/Unpaid), approve/reject with comments, notifications |
+| **Employee Management** | List, search, view & edit profiles (HR) |
+| **Payroll** | View salary structure; HR can update |
+| **Profile** | View job info, edit limited fields |
+| **Notifications** | In-app alerts for leave decisions & activity |
 
-## 3. Roles
-### Admin / HR Officer
-An admin or an HR officer can:
-Manage employees
-View employee profiles
-View attendance
-View, approve, and reject leaves with comments
-View payrolls information
-Update salary information
-View analytics and reports
+---
 
-### Employee
-An employee can:
-View his/her profile
-Edit his/her profile
-Clock in and out
-View attendance
-Apply and view leaves
-View salary/payroll information
-View activity feed
+## Quick Start (Local)
 
-## 4. Features
-### Authentication
-This will involve:
-Registering Users
-Employees will provide: Employee ID, Email, and Password, and select a role (Admin/HR or Employee)
-Email verification
-Logging in with email and password
-Error messages with invalid login credentials
-Redirect to the dashboard upon successful login
+### Prerequisites
+- Python 3.10+
 
-### Employee Dashboard
-The employee dashboard will have the following:
-Profile
-Attendance
-Leaves
-Log out
-View activity feed
+### Run in 3 commands
 
-### Admin Dashboard
-The admin dashboard will have the following:
-View employees
-View attendance
-Leave approvals
-Employee switching
-View payrolls
-View analytics and reports
-### Employee Profile
-Employee Profile will have:
-Employee details
-Employment information
-Salary information
-Documents
-Profile picture
-An employee can update the following:
-Address
-Contact information
-Profile picture
-Admin can update employee information
-
-### Attendance
-The Dayflow app will have:
-Attendance overview
-Weekly view
-Check-in
-Check-out
-Attendance status
-Present
-Absent
-Half-day
-Leave
-An employee can view his/her attendance whereas an admin can view attendance of all employees
-
-### Leaves and Time offs
-An employee can:
-Select a leave type
-Choose a date range
-Add remarks
-Submit a leave application
-Leave type options are:
-Paid leave
-Sick leave
-Unpaid leave
-Leave application status can either be:
-Pending
-Approved
-Rejected
-The admin can:
-View leave requests
-Approve and reject leaves
-Add comments
-
-### Payrolls
-An employee cannot update his/her payroll.
-An admin can:
-View employee payroll information
-Update payroll information to ensure accuracy
-### Notifications, Alerts, and Reports
-The Dayflow app will also offer:
-Email and notification system
-Analytic dashboards
-Attendance reports
-Payroll reports and salary slips
-
-## 5. Frontend
-The frontend will be built using
-React
-CSS
-JavaScript
-
-### Frontend Features
-The following are some of the frontend features:
-Design system
-React application
-Navigation
-Login
-Signup screen
-Employee dashboard
-Admin dashboard
-Reusable components
-Responsive user interface
-The frontend will communicate with the backend through application programming interfaces (APIs)
-
-## 6. Proposed Frontend Structure
+```bash
+cd backend
+pip install -r requirements.txt
+python -m uvicorn main:app --host 0.0.0.0 --port 8000
 ```
-src/
-├── assets/
-├── components/
-├── layouts/
-├── pages/
-├── styles/
-├── services/
-├── hooks/
-├── App.jsx
-└── main.jsx
-```
-## 7. Application Flow
-```
-Landing / Authentication
-│
-├── Sign Up
-│   │
-│   └── Email Verification
-│
-└── Sign In
-      │
-      ▼
-Role-Based Dashboard
-       │
-┌──────┴──────┐
-│             │
-Employee    Admin / HR
-│             │
-▼             ▼
-Profile     Employees
-Attendance  Attendance
-Leave       Leave Approvals
-Payroll     Payroll
-Alerts       Reports
-```
-## 8. Design System
-The following design system will be used to develop the user interface:
-Color palette
-Fonts
-Spacing
-Buttons
-Inputs
-Cards
-Navigation
-Status badgers
-Tables
-Responsive layouts
 
-## 9. Development
-The react application was built using the Vite development environment
-Once the application was installed, the development server was started using the following command:
-```
-npm run dev
-```
-The local URL will be printed in the terminal
-## 10. Scope
-This project focuses on digitizing certain aspects of the employees experience while offering different features for Employees and Admin/HR Officers
+Open **http://localhost:8000**
 
-It will feature secure logins, employee and attendance management, payroll information, leave requests, and approvals among other features
+Demo data is **auto-seeded** on first start.
 
-## 11. Next Steps
-Other features not mentioned above can also be added depending on the scope of the project
+### Demo Logins
+
+| Role | Email | Password |
+|------|-------|----------|
+| **HR Admin** | `hr@dayflow.dev` | `HRAdmin2026` |
+| Employee | `alice@dayflow.dev` | `Employee2026` |
+| Employee | `bob@dayflow.dev` | `Employee2026` |
+| Employee | `carol@dayflow.dev` | `Employee2026` |
+
+API docs: http://localhost:8000/docs
+
+---
+
+## Deploy
+
+### Option A — Render (recommended)
+
+1. Push this repo to GitHub
+2. Go to [render.com](https://render.com) → **New → Web Service**
+3. Connect the repo
+4. Settings:
+   - **Root Directory:** `backend`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
+5. Optional env: `JWT_SECRET_KEY` = any long random string
+6. Deploy → live URL like `https://hrms-xxxx.onrender.com`
+
+### Option B — Railway
+
+1. New project → Deploy from GitHub
+2. Root directory: `backend`
+3. Start: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+
+### Option C — Any server
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+---
+
+## Project Structure
+
+```
+HRMS/
+├── backend/                 # FastAPI API + serves frontend
+│   ├── main.py              # Entry, CORS, SPA, auto-seed
+│   ├── database.py
+│   ├── models.py
+│   ├── auth.py
+│   ├── seed.py
+│   ├── requirements.txt
+│   └── routers/
+├── frontend/
+│   ├── dist/                # Production React build
+│   └── src/                 # Source (optional rebuild)
+├── Procfile
+├── render.yaml
+└── README.md
+```
+
+---
+
+## Architecture
+
+- **Backend:** FastAPI + SQLModel + SQLite + JWT
+- **Frontend:** React 18 + Vite + Tailwind (pre-built)
+- **Auth:** Role-based (employee / hr)
+- **Single process:** API at `/api/*`, UI at `/`
+
+---
+
+## Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `JWT_SECRET_KEY` | hackathon default | Change in production |
+| `CORS_ORIGINS` | `*` | Comma-separated origins or `*` |
+
+---
+
+## License
+
+MIT
